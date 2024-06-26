@@ -1,0 +1,71 @@
+A database was used in the project and the DB connection configuration was made correctly.
+core folder db class
+
+Has the admin user type been coded so that the employee can perform operations such as listing, adding, updating and deleting mentioned in the project?
+
+View >Admin View
+Has the agency employee (employee) been coded to perform operations such as listing, adding and deleting the hotel, season, hostel, hotel feature, room, room feature mentioned in the project?
+
+view > HotelView
+
+During the login process, is it checked whether the user is registered or not? If the user is not registered or logged in incorrectly, is the user given an incorrect login message?
+
+view > admin view
+
+Can the agency staff register the contracted hotels into the system by entering the hotel name, address, e-mail, phone number, stars and facility features?
+
+view > hotelView
+view > hotelAddView
+view > hotelUpdateView
+
+Is period management carried out when adding hotels to the system?
+
+view > hotelAddView > start of line 100
+
+Has hostel type management been done when adding hotels to the system?
+
+view > RoomAdd > line 132
+
+Can agency staff add rooms to hotels registered in the system? When adding a room, have the room type (Single, Double, Junior Suite, Suite, etc.), room features (Number of Beds, Television, Minibar, etc.) and stock quantity been taken into account?
+
+view > RoomAdd
+
+Are the prices of newly added rooms determined according to the season, hostel type and whether the guests are adults or children?
+
+view > RoomAdd >265. row roomPriceCalcul() method
+
+Can the agency employee successfully search for rooms by date range, hotel name, city? (4 points)
+
+view > HotelView > line 154
+
+Are the information of the hotels (address, stars, hotel facilities, etc.) and the information of the rooms (check-in, check-out date, number of adults, children, number of beds, if any, mini bar, TV, etc.) that are suitable for the search result displayed to the user?
+
+view > HotelView > loadRoomTable() and loadRoomPropertiesTable(); methods
+
+Is the price of the accommodation calculated successfully based on guest information, number of nights to stay and room price?
+
+view > ReservationAdd > line 136 > btn_reser_price
+
+Can the agency employee successfully book the room that suits the customer's request by entering customer information?
+
+view > ReservationAdd > line 199 btn_add_reservation
+
+Is the stock of the booked room decreasing? (4 points)
+
+view > ReservationAdd > line 236 stockUpdate
+
+Are agency employees able to successfully list the reservations made through the system?
+
+view > HotelView > loadReserTable() method
+
+Can agency employees successfully update the reservations made through the system?
+
+view > RevervationUpdateView
+
+Can agency employees successfully delete reservations made through the system?
+
+view > HotelView > line 475 > reserMenuList() > delete
+
+Does the stock of the relevant room increase after deleting the reservation?
+
+view > HotelView > line 484 > reserMenuList() > delete > stockUpdate
