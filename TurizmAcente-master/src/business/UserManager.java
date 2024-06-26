@@ -47,20 +47,6 @@ public class UserManager {
         return this.userDao.getById(id);
     }
 
-      /*  String select ="SELECT * FROM public.user ";
-        ArrayList<String> whereList = new ArrayList<>();
-        if (!role.toString().equals(" ")){
-            whereList.add("user_role = " +role.toString() );
-
-        }
-        String whereStr = String.join(" AND ",whereList);
-        String query=select;
-        if(whereStr.length() > 0){
-            query +=  " WHERE "+whereStr;
-
-        }
-
-        System.out.println(query);*/
       public ArrayList<User>  searcForTable(User.Role role){
         String query ="SELECT * FROM public.user WHERE user_role = '"+ role.toString()+ "'";
         return this.userDao.selectByQuery(query);
@@ -77,7 +63,7 @@ public class UserManager {
 
     public boolean update (User user){
         if(this.getById(user.getUserId())==null){
-            Helper.showMsg(user.getUserId()+" ID bulunamadı");
+            Helper.showMsg(user.getUserId()+"ID not found");
             return false;
         }
         return this.userDao.update(user);
@@ -86,7 +72,7 @@ public class UserManager {
     public boolean delete(int id ){
 
         if(this.getById(id)==null){
-            Helper.showMsg(id+" ID bulunamadı");
+            Helper.showMsg(id+"ID not found");
             return false;
         }
         return this.userDao.delete(id);

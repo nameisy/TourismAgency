@@ -94,15 +94,15 @@ public class ReserDao {
             if (rowsAffected == 1) {
                 ResultSet generatedKeys = pr.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1); // Yeni rezervasyon ID'sini döndür
+                    return generatedKeys.getInt(1); // Return the new reservation ID.
                 }
             } else {
-                Helper.showMsg("Reservation could not be added."); // Ekleme başarısız olduğunda hata mesajı
+                Helper.showMsg("Reservation could not be added."); // Error message when insertion fails.
             }
         } catch (SQLException throwables) {
-            throwables.printStackTrace(); // Hata durumunda istisna işleniyor
+            throwables.printStackTrace(); // Exception handled on error.
         }
-        return -1; // Hata durumunda veya başarısız eklemede -1 döndürülüyor
+        return -1; // On error or failed insertion, -1 is returned.
     }
 
     public boolean update(Reser reser){
@@ -143,13 +143,13 @@ public class ReserDao {
     }
 
 
-    // Örnek: reservations listesini veritabanına eklemek
+    // Example: adding the reservations list to the database.
     public boolean saveGuestInfoList(int reservationId) {
         try {
-            // reservations listesini GuestInfoAddView sınıfından al
+            // get the reservations list from the GuestInfoAddView class.
             List<Reser> guestInfoList = GuestInfoAddView.reservations;
 
-            // Her bir Reser nesnesi için guest_info tablosuna ekleme yap
+            // Add to the guest_info table for each Reser object
             for (Reser reser : guestInfoList) {
                 String insertQuery = "INSERT INTO public.guest_info (reservations_id, full_name, national_number, country, guest_class) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement insertStatement = con.prepareStatement(insertQuery);
@@ -163,9 +163,9 @@ public class ReserDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("An error occurred while inserting new guest information: " + e.getMessage());
-            return false; // Ekleme işlemi başarısız olduğunda false döndür
+            return false; 
         }
-        return true; // Ekleme işlemi başarılıysa true döndür
+        return true; // Return true if the insertion was successful.
     }
 
 

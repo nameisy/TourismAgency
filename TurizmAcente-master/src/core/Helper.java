@@ -31,24 +31,24 @@ public class Helper {
         String title;
         switch (str) {
             case "fill" -> {
-                msg = "Lütfen tüm alanları doldurunuz !";
+                msg = "Please fill in all fields !";
                 title = "Hata!";
             }
             case "done" -> {
-                msg = "İşlem Başarılı !";
-                title = "Sonuç";
+                msg = "Operation Successful !";
+                title = "Conclusion";
             }
             case "notFound" -> {
-                msg = "Kayıt bulunamadı !";
-                title = "Bulunamadı";
+                msg = "No record found !";
+                title = "Not found";
             }
             case "error" -> {
-                msg = "Hatalı işlem yaptınız !";
-                title = "Hata!";
+                msg = "You have made an incorrect operation !";
+                title = "Error!";
             }
             default -> {
                 msg = str;
-                title = "Mesaj";
+                title = "Message";
             }
         }
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
@@ -58,40 +58,40 @@ public class Helper {
         optionPayneTR();
         String msg;
         if (str.equals("sure")) {
-            msg = "Bu işlemi yapmak istediginize eminmisiniz !!";
+            msg = "Are you sure you want to do this operation? !!";
 
         } else {
             msg = str;
         }
-        return JOptionPane.showConfirmDialog(null, msg, "Eminmisiniz", JOptionPane.YES_NO_OPTION) == 0;
+        return JOptionPane.showConfirmDialog(null, msg, "Are you sure?", JOptionPane.YES_NO_OPTION) == 0;
 
     }
 
     public static void optionPayneTR() {
-        UIManager.put("OptionPane.okButtonText", "Tamam");
-        UIManager.put("OptionPane.yesButtonText", "Evet");
-        UIManager.put("OptionPane.noButtonText", "Hayır");
+        UIManager.put("OptionPane.okButtonText", "Ok");
+        UIManager.put("OptionPane.yesButtonText", "Yes");
+        UIManager.put("OptionPane.noButtonText", "No");
 
     }
 
-    //Jradio lara oda özellikleri metinleri için, oda ekleme ekranındaki
+    //For room properties texts for radios, see the Add a room screen.
     public static String roomProperty(String number){
         String property="";
         switch (number){
             case "1":
-                property = "Televizyon ";
+                property = "Television ";
                 break;
             case "2":
                 property = "Minibar ";
                 break;
             case "3":
-                property = "Oyun Konsolu";
+                property = "Game Console";
                 break;
             case "4":
-                property = "Kasa";
+                property = "Safe deposit box";
                 break;
             case "5":
-                property = "Projeksiyon";
+                property = "Projection";
                 break;
         }
         return property;
@@ -101,9 +101,9 @@ public class Helper {
 
         try {
             LocalDate date = LocalDate.parse(inputDate, formatter);
-            return true; // Geçerli tarih formatı
+            return true; // Current date format
         } catch (DateTimeParseException e) {
-            return false; // Geçersiz tarih formatı
+            return false; // Invalid date format
         }
     }
     public static LocalDate parseDate(String inputDate, String formatPattern) {
@@ -111,9 +111,9 @@ public class Helper {
 
         try {
             LocalDate date = LocalDate.parse(inputDate, formatter);
-            return date; // Başarılı dönüşüm
+            return date; // Successful conversion
         } catch (DateTimeParseException e) {
-            return null; // Dönüşüm başarısız
+            return null; // Conversion failed
         }
     }
 
@@ -124,12 +124,12 @@ public class Helper {
         }
         return list;
     }
-    // Nesne listesini String listesine dönüştüren metot
+    // Method to convert object list to String list
     public static List<String> convertObjectListToStringList(Object[] objectList) {
         List<String> stringList = new ArrayList<>();
         for (Object person : objectList) {
-            // Her bir nesneyi String'e dönüştürerek listeye ekleyelim
-            String str = person.toString(); // toString metodu çağrılır
+            // Convert each object to String and add it to the list
+            String str = person.toString(); // toString method is called
             stringList.add(str);
         }
         return stringList;

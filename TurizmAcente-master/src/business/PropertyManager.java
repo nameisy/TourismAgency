@@ -67,7 +67,7 @@ public class PropertyManager {
 
     public boolean update(Property property) {
         if (this.getById(property.getPropertyID()) == null) {
-            Helper.showMsg(property.getPropertyID() + " ID bulunamadı");
+            Helper.showMsg(property.getPropertyID() + "ID not found");
             return false;
         }
         return this.propertyDao.update(property);

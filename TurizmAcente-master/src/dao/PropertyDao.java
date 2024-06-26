@@ -27,16 +27,16 @@ public class PropertyDao {
             if (rs.next()) {
                 obj = this.match(rs);
             } else {
-                // ResultSet boş ise veya rs.next() false dönerse, yeni bir Types objesi oluşturarak id'yi set edin
+                // If ResultSet is empty or rs.next() returns false, create a new Types object and set id.
                 obj = new Property();
-                obj.setHotel_id(id); // Dışarıdan gelen id'yi set et
-                obj.setPropertyNames(List.of(new String[] {"Ücretsiz Otopark",
-                        "Ücretsiz WiFi",
-                        "Yüzme Havuzu",
-                        "Fitness Center",
+                obj.setHotel_id(id); // Set the id from outside.
+                obj.setPropertyNames(List.of(new String[] {"Free Car Parking",
+                        "Free WiFi",
+                        "Swimming Pool",
+                        "Fitness Centre",
                         "Hotel Concierge",
                         "SPA",
-                        "7/24 Oda Servisi"}));
+                        "24/7 Room Service"}));
             }
 
         } catch (SQLException e) {
@@ -80,19 +80,19 @@ public class PropertyDao {
             while (rs.next()) {
                 Array propertyNamesArray = rs.getArray("property_names");
                 if (propertyNamesArray != null) {
-                    // PostgreSQL array'i PgArray olarak elde et
+                    // Get the PostgreSQL array as PgArray.
                     PgArray pgArray = (PgArray) propertyNamesArray;
 
-                    // PgArray'den Java dizisine dönüşüm
+                    // PgArray to Java array conversion.
                     Object[] pgElements = (Object[]) pgArray.getArray();
 
-                    // Java dizisini String dizisine dönüştür
+                    // Convert Java array to String array.
                     String[] propertyNames = new String[pgElements.length];
                     for (int i = 0; i < pgElements.length; i++) {
                         propertyNames[i] = (String) pgElements[i];
                     }
 
-                    // Listeye ekle
+                    // Add to list.
                     propertyList.add(propertyNames);
                 }
             }
@@ -159,18 +159,18 @@ public class PropertyDao {
             pr.setInt(2, hotelId);
 
             int rowsAffected = pr.executeUpdate();
-            return rowsAffected > 0; // Ekleme başarılıysa true döndür
+            return rowsAffected > 0; // Return true if the insertion was successful.
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false; // Hata durumunda veya başarısız eklemede false döndür
+        return false; // Return false on error or failed insertion.
     }
 
 
     public boolean update(Property property) {
         String query = "UPDATE public.hotel_property SET " +
                 "property_id = ?," +
-                "property_names = ? " +  // Düzeltme: Virgül gereksizdi
+                "property_names = ? " +  // Correction: The comma was unnecessary.
                 "WHERE hotel_id = ?";
 
 

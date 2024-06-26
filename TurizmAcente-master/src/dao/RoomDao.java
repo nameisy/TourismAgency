@@ -102,19 +102,19 @@ public class RoomDao {
         }
 
 
-        // WHERE koşullarını SQL sorgusuna ekle
+        // Add WHERE conditions to the SQL query.
         if (!where.isEmpty()) {
             queryBuilder.append(" AND ");
             queryBuilder.append(String.join(" AND ", where));
         }
 
-        // SQL sorgusunu tamamla
+        // Complete the SQL query.
         String query = queryBuilder.toString();
 
-        // Oluşturulan sorguyu kullanarak odaları seç
+        // Select rooms using the generated query.
         searchedRooms = selectByQuery(query);
 
-        // Sonuçları döndür
+        // Return results.
         return searchedRooms;
     }
 
@@ -135,13 +135,13 @@ public class RoomDao {
             if (rowsAffected == 1) {
                 ResultSet generatedKeys = pr.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1); // Yeni otel ID'sini döndür
+                    return generatedKeys.getInt(1); // Return the new hotel ID.
                 }
             }
     } catch (SQLException throwables) {
         throwables.printStackTrace();
     }
-        return -1; // Hata durumunda veya başarısız eklemede -1 döndür
+        return -1; // Return -1 on error or failed insertion.
 }
     public boolean stockUpdate(Room room,int num){
         String query = "UPDATE public.room SET " +

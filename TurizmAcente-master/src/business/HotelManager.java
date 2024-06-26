@@ -28,7 +28,7 @@ public class HotelManager {
 
     public boolean update (Hotel hotel){
         if(this.getById(hotel.getHotel_id())==null){
-            Helper.showMsg(hotel.getHotel_id()+" ID bulunamadı");
+            Helper.showMsg(hotel.getHotel_id()+"ID not found");
             return false;
         }
         return this.hotelDao.update(hotel);
@@ -36,14 +36,14 @@ public class HotelManager {
     public boolean delete(int id ){
 
         if(this.getById(id)==null){
-            Helper.showMsg(id+" ID kayıtlı model bulunamadı");
+            Helper.showMsg(id+"ID registered model not found");
             return false;
         }
         return this.hotelDao.delete(id);
     }
 
 
-    //Otel ID", "Otel Adı", "Şehir", "Bölge", "Adres", "E-posta", "Telefon", "Yıldız Derecesi
+    //Hotel ID", “Hotel Name”, “City”, “Region”, “Address”, “Email”, “Phone”, ’Star Rating
     public ArrayList<Object[]> getForTable(int size,ArrayList<Hotel>hotelList){
         ArrayList<Object[]> hotelArrayList = new ArrayList<>();
         for(Hotel hotel : hotelList){

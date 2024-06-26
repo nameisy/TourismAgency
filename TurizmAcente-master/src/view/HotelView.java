@@ -177,7 +177,7 @@ public class HotelView extends Layout {
             }
 
         });
-        // Yetişkin sayısını al
+        // Get the number of adults
         cmb_adult_num_search.addActionListener(e -> {
             String cmbAdultNumbSelectedItem =(String) cmb_adult_num_search.getSelectedItem();
             if (cmbAdultNumbSelectedItem != null) {
@@ -185,21 +185,21 @@ public class HotelView extends Layout {
             }
         });
 
-       // cocuk sayısını al
+        // Get the number of children
         cmb_child_num_search.addActionListener(e -> {
             String cmbChildNumSelectedItem =(String) cmb_child_num_search.getSelectedItem();
             if (cmbChildNumSelectedItem != null) {
                 childNum = Integer.parseInt(cmbChildNumSelectedItem);
             }
         });
-        //sehır ısmını al
+        //get city name.
         cmb_city.addActionListener(e -> {
             Object selectedCityObject = cmb_city.getSelectedItem();
             if (selectedCityObject != null) {
                 selectedCity = selectedCityObject.toString();
             }
         });
-        //ARAMA TEMIZLEME TABLOYU SIFIRLAMA
+        //SEARCH CLEAR TABLE RESET
         cmb_room_list_clear.addActionListener(e -> {
             if (cmb_region_hotelName != null) {
                 cmb_region_hotelName.setSelectedItem(null);
@@ -239,14 +239,14 @@ public class HotelView extends Layout {
         cmb_region_hotelName.addItem(new ComboItem(0, null));
         cmb_city.setSelectedItem(null);
 
-        ArrayList<Hotel> hotelList = hotelManager.findAll(); // Tüm otelleri al
+        ArrayList<Hotel> hotelList = hotelManager.findAll(); // Get all hotels.
 
-        // Otel isimlerini tutacak HashSet oluştur
+        // Create HashSet to hold hotel names.
         HashSet<String> hotelNames = new HashSet<>();
-        // Otel listesini döngüye alarak isimleri HashSet'e ekle
+        // Loop through the hotel list and add the names to the HashSet.
         for (Hotel hotel : hotelList) {
             String hotelName = hotel.getHotel_name();
-            // Aynı isimde otel daha önce eklenmediyse HashSet'e ekle
+            // Add hotel with same name to HashSet if not added before
             if (!hotelNames.contains(hotelName)) {
                 hotelNames.add(hotelName);
                 cmb_region_hotelName.addItem(new ComboItem(hotel.getHotel_id(), hotelName));
@@ -255,15 +255,15 @@ public class HotelView extends Layout {
     }
 
     public void loadRoomPropertiesTable() {
-        // Tablodaki seçili satırı işaretleyelim
+        // Mark the selected row in the table.
         this.tableRowSelect(tbl_room_property);
-        // tbl_hotel_list üzerinde fare tıklamalarını dinlemek için MouseListener ekleyelim
+        // Add MouseListener to listen mouse clicks on tbl_hotel_list.
         tbl_room_list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Seçilen satırın 0. indeksindeki değeri (otel ID) alalım
+                // Get the value (hotel ID) at index 0 of the selected row.
                 int selectedRoomId = getTableSelectedRow(tbl_room_list, 0);
-                // Seçilen otelin detaylarını getirmek için hotelManager üzerinden getById metodunu çağıralım
+                // Call getById method on hotelManager to get the details of the selected hotel.
                 Object[] col_room_properties = { "Gecelik Ücret","Yetişkin Yatak Sayısı","Çocuk Yatak Sayısı","Yetişkin Ücreti","Çocuk Ücreti","Alan(m2)","Oda Özellikleri"};
                 ArrayList<Object[]> hotelTypeList = propertyManager.getForTableRoomProperty(col_room_properties.length, selectedRoomId);
                 createTable(tmdl_room_properties, tbl_room_property, col_room_properties, hotelTypeList);
@@ -293,7 +293,7 @@ public class HotelView extends Layout {
     }
     public void loadRoomTable(ArrayList<Object[]> roomlList) {
         this.tableRowSelect(this.tbl_room_list);
-        col_room_list = new Object[]{"id", "Hotel Adı", "Şehir Adı", "Oda Tipi", "Stok", "Sezon Tarihleri", "Yetişkin Fiyatı", "Çocuk Fiyatı", "Pansiyon Tipi"};
+        col_room_list = new Object[]{"id", "Hotel Name", "City", "Room Type", "Stock", "Season Dates", "Yetişkin Fiyatı", "Çocuk Fiyatı", "Pansiyon Tipi"};
         if (roomlList == null) {
             roomlList = this.roomManager.getForTable(col_room_list.length, roomManager.findAll());
         }
@@ -302,7 +302,7 @@ public class HotelView extends Layout {
 
     public void loadHotelTable(ArrayList<Object[]> hotelList) {
         this.tableRowSelect(tbl_hotel_list);
-        this.col_hotel = new Object[]{"Hotel ID", "Otel Adı", "Şehir", "Bölge", "Adres", "E-posta", "Telefon", "Yıldız Derecesi"};
+        this.col_hotel = new Object[]{"Hotel ID", "Hotel Name", "City", "Region", "Adress", "E-mail", "Telephone", "Star"};
         if (hotelList == null) {
             hotelList = this.hotelManager.getForTable(col_hotel.length, hotelManager.findAll());
         }
@@ -310,15 +310,15 @@ public class HotelView extends Layout {
     }
 
     public void loadHotelPopertyTable() {
-        // Tablodaki seçili satırı işaretleyelim
+        // Mark the selected row in the table.
 
-        // tbl_hotel_list üzerinde fare tıklamalarını dinlemek için MouseListener ekleyelim
+        // Add MouseListener to listen mouse clicks on tbl_hotel_list.
         tbl_hotel_list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Seçilen satırın 0. indeksindeki değeri (otel ID) alalım
+                // Get the value (hotel ID) at index 0 of the selected row.
                 int selectedHotelId = getTableSelectedRow(tbl_hotel_list, 0);
-                // Seçilen otelin detaylarını getirmek için hotelManager üzerinden getById metodunu çağıralım
+                // Call getById method on hotelManager to get the details of the selected hotel.
                 Object[] columnNames = new Object[]{"Hotel ID", "Otel Özellik"};
                 List<String[]> hotelPropertyList = propertyManager.getPropertyList(selectedHotelId);
                 createTableStringLines(textArea1, columnNames, selectedHotelId, hotelPropertyList);
@@ -327,15 +327,15 @@ public class HotelView extends Layout {
     }
 
     public void loadHotelTypesTable() {
-        // Tablodaki seçili satırı işaretleyelim
+        // Mark the selected row in the table.
 
-        // tbl_hotel_list üzerinde fare tıklamalarını dinlemek için MouseListener ekleyelim
+        // Add MouseListener to listen mouse clicks on tbl_hotel_list.
         tbl_hotel_list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Seçilen satırın 0. indeksindeki değeri (otel ID) alalım
+                // Get the value (hotel ID) at index 0 of the selected row.
                 int selectedHotelId = getTableSelectedRow(tbl_hotel_list, 0);
-                // Seçilen otelin detaylarını getirmek için hotelManager üzerinden getById metodunu çağıralım
+                // Call getById method on hotelManager to get the details of the selected hotel.
                 Object[] col_hotelType = new Object[]{"Hotel ID", "Pansiyon Type"};
                 ArrayList<Object[]> hotelTypeList = typeManager.getForTable(col_hotelType.length, selectedHotelId);
                 createTable(tmdl_hotelType, tbl_hotel_type, col_hotelType, hotelTypeList);
@@ -346,16 +346,16 @@ public class HotelView extends Layout {
 
 
     public void loadHotelSeasonTable() {
-        // Tablodaki seçili satırı işaretleyelim
+        // Mark the selected row in the table.
 
-        // tbl_hotel_list üzerinde fare tıklamalarını dinlemek için MouseListener ekleyelim
+        // Add MouseListener to listen mouse clicks on tbl_hotel_list.
         tbl_hotel_list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Seçilen satırın 0. indeksindeki değeri (otel ID) alalım
+                // Get the value (hotel ID) at index 0 of the selected row.
                 int selectedHotelId = getTableSelectedRow(tbl_hotel_list, 0);
 
-                // Seçilen otelin detaylarını getirmek için hotelManager üzerinden getById metodunu çağıralım
+                // Call getById method on hotelManager to get the details of the selected hotel.
 
                 Object[] col_hotelSeason = new Object[]{"Hotel ID\t", "Sezon Başlangıç\t", "Sezon Bitiş", "Sezon Tipi"};
                 ArrayList<Object[]> hotelSeasonList = seasonManager.getForTable(col_hotelSeason.length, selectedHotelId);
@@ -367,7 +367,7 @@ public class HotelView extends Layout {
 
     public void hotelMenuList() {
         this.hotel_Menu = new JPopupMenu();
-        this.hotel_Menu.add("Yeni").addActionListener(e -> {
+        this.hotel_Menu.add("New").addActionListener(e -> {
             HotelAddView hotelAddView = new HotelAddView(new Hotel(), new Property(), new Types(), new Season());
             hotelAddView.addWindowListener(new WindowAdapter() {
                 @Override
@@ -382,7 +382,7 @@ public class HotelView extends Layout {
             });
         });
 
-        this.hotel_Menu.add("Güncelle").addActionListener(e -> {
+        this.hotel_Menu.add("Update").addActionListener(e -> {
             int selectHotelId = getTableSelectedRow(tbl_hotel_list, 0);
             HotelUpdateView hotelUpdateView = new HotelUpdateView
                     (this.hotelManager.getById(selectHotelId),
@@ -400,7 +400,7 @@ public class HotelView extends Layout {
                 }
             });
         });
-        this.hotel_Menu.add("Sil").addActionListener(e -> {
+        this.hotel_Menu.add("Delete").addActionListener(e -> {
             if (Helper.confirm("sure")) {
                 int selectBrandId = getTableSelectedRow(tbl_hotel_list, 0);
                 if (this.hotelManager.delete(selectBrandId)) {
@@ -432,7 +432,7 @@ public class HotelView extends Layout {
             });
 
             } else{
-            Helper.showMsg("Oda stok 0 rezervasyon yapılamaz");
+            Helper.showMsg("Room stock 0 cannot be booked!");
         }
 
         });
@@ -459,7 +459,7 @@ public class HotelView extends Layout {
                 }
             }
         });
-        this.room_Menu.add("Yenile").addActionListener(e -> {
+        this.room_Menu.add("Renew").addActionListener(e -> {
             loadRoomTable(null);
         });
         this.tbl_room_list.setComponentPopupMenu(this.room_Menu);

@@ -87,28 +87,28 @@ public class ReservationAdd extends Layout {
         fld_hotel_phone.setText(hotelPhone);
 
         propertyManager.getByBedNum(this.room.getId()).getRoomAdultBedNum();
-        // Yetişkin sayısını al ve JTextField'e yaz
+        // Get the number of adults and write it to JTextField.
          adultBedNum =  propertyManager.getByBedNum(this.room.getId()).getRoomAdultBedNum();
         fld_adult_numb.setText(String.valueOf(adultBedNum));
 
-        // Çocuk sayısını al ve JTextField'e yaz
+        // Get the number of children and write it to JTextField.
         childBedNum = propertyManager.getByBedNum(this.room.getId()).getRoomChildBedNum();
         fld_child_numb.setText(String.valueOf(childBedNum));
 
         List<String> hotelPropertyList = property.getPropertyNames();
-        // JTextArea içeriğini temizle
+        // Clear the contents of the JTextArea.
         txtArea_hotel_property.setText("");
-        // Listede bulunan tüm özellikleri JTextArea'ya ekleyin
+        // Add all properties in the list to the JTextArea.
         for (String property : hotelPropertyList) {
-            txtArea_hotel_property.append(property+"\n");  // Her özelliği yeni satıra ekleyin
+            txtArea_hotel_property.append(property+"\n");  // Add each property on a new line.
         }
-        //yetıskın cocuk yatak sayısı kapasıte verısını belırleme
+        // Determining the capacity data of the number of adult children's beds.
         loadCmbBedNumsList();
 
 
 
-        lbl_adult_price.setText("Yetişkin Ücreti : "+room.getAdultPrice());
-        lbl_child_price.setText("Cocuk Ücreti : "+room.getChildPrice());
+        lbl_adult_price.setText("Adult Fee : "+room.getAdultPrice());
+        lbl_child_price.setText("Child Fee : "+room.getChildPrice());
 
         txtArea_room_property.setText(propertyManager.getRoomPropertyName(room.getId()));
 
@@ -135,14 +135,14 @@ public class ReservationAdd extends Layout {
 
         btn_reser_price.addActionListener(e -> {
 
-            if(Helper.isValidDate(fld_check_start_date.getText(),("dd-MM-yyyy")) && Helper.isValidDate(fld_check_end_date.getText(),("dd-MM-yyyy") ))
+            if(Helper.isValidDate(fld_check_start_date.getText(),("dd-mm-yyyy")) && Helper.isValidDate(fld_check_end_date.getText(),("dd-MM-yyyy") ))
             {
-                reservationStartDate=(LocalDate.parse(fld_check_start_date.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                reservationEndDate=(LocalDate.parse(fld_check_end_date.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                reservationStartDate=(LocalDate.parse(fld_check_start_date.getText(), DateTimeFormatter.ofPattern("dd-mm-yyyy")));
+                reservationEndDate=(LocalDate.parse(fld_check_end_date.getText(), DateTimeFormatter.ofPattern("dd-mm-yyyy")));
                 daysBetween = (int) ChronoUnit.DAYS.between(reservationStartDate, reservationEndDate);
 
             }else{
-                Helper.showMsg("Geçersiz tarih girildi");
+                Helper.showMsg("Invalid date entered.");
             }
             if(!fld_check_start_date.getText().isEmpty() && !fld_check_end_date.getText().isEmpty()) {
                 int comparison = reservationStartDate.compareTo(reservationEndDate);
@@ -157,20 +157,20 @@ public class ReservationAdd extends Layout {
                         int reservationPrice = ((daysBetween * roomPrince) + (adultPrice * (int) cmb_AdultBedNums.getSelectedItem()) + (childPrice * (int) cmb_ChildBedNum.getSelectedItem()));
 
                         fld_reser_price.setText(String.valueOf(reservationPrice));
-                        // Biçimlendirici oluştur (Virgülden sonra iki ondalık basamak kullan)
+                        // Create a formatter (use two decimal places after the comma).
                         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-                        // Sayıyı belirli bir biçimde formatla
+                        // Format the number in a specific format.
                         String formattedText = decimalFormat.format(reservationPrice);
                         fld_reser_price.setText(formattedText + " TL ");
 
                     } else {
-                        Helper.showMsg(reservationStartDate + " tarihi " + reservationEndDate + "  tarihinden geride olamaz.");
+                        Helper.showMsg(reservationStartDate + " history " + reservationEndDate + "  cannot be behind the date.");
                     }
                 } else {
-                    Helper.showMsg(formattedStartDate + " - " + formattedEndDate + "  sezon tarihileri arsında olmalı.");
+                    Helper.showMsg(formattedStartDate + " - " + formattedEndDate + "  It must be one of the Szon dates..");
                 }
                 }else{
-                Helper.showMsg("Rezervasyon Tarihleri Boş olamaz");
+                Helper.showMsg("Booking Dates Cannot Be Empty!");
             }
         });
         fld_check_start_date.addKeyListener(new KeyAdapter() {
@@ -208,9 +208,9 @@ public class ReservationAdd extends Layout {
                     cmb_ChildBedNum.getSelectedItem() ==null )
             {
                 Helper.showMsg("fill");
-            } else if (!Helper.isValidDate(fld_check_start_date.getText(),("dd-MM-yyyy")) || !Helper.isValidDate(fld_check_end_date.getText(),("dd-MM-yyyy")))
+            } else if (!Helper.isValidDate(fld_check_start_date.getText(),("dd-mm-yyyy")) || !Helper.isValidDate(fld_check_end_date.getText(),("dd-MM-yyyy")))
             {
-                Helper.showMsg("Geçersiz tarih girildi");
+                Helper.showMsg("Invalid date entered!");
             } else {
                 String fldAdultBedNum = cmb_AdultBedNums.getSelectedItem().toString();
                 String fldChildBedNum = cmb_ChildBedNum.getSelectedItem().toString();
@@ -234,7 +234,7 @@ public class ReservationAdd extends Layout {
                        Helper.showMsg("done");
                        dispose();
                         if(this.roomManager.stockUpdate(this.room,-1)){
-                            Helper.showMsg("Stok Azaltıldı");
+                            Helper.showMsg("Stock Reduced.");
                         }
 
                    }
@@ -249,7 +249,7 @@ public class ReservationAdd extends Layout {
                 }*/
                 }
             }else {
-                Helper.showMsg("Misafir Bilgileri Boş Olamaz");
+                Helper.showMsg("Guest Information Cannot Be Empty!");
             }
         });
         misafirBilgileriButton.addActionListener(e -> {
@@ -266,7 +266,7 @@ public class ReservationAdd extends Layout {
 
 
     public void loadCmbBedNumsList(){
-        // Integer dizisi oluşturalım
+        // Create an Integer array.
         Integer[] itemAdult = new Integer[adultBedNum + 1];
         for (int i = 0; i <= adultBedNum; i++) {
             itemAdult[i] = i;
@@ -275,7 +275,7 @@ public class ReservationAdd extends Layout {
         cmb_AdultBedNums.setModel(cmbAdultModel);
         cmb_AdultBedNums.setSelectedIndex(0);
 
-        // Integer dizisi oluşturalım
+        // Create an Integer array.
         Integer[] itemChild = new Integer[childBedNum + 1];
         for (int i = 0; i <= childBedNum; i++) {
             itemChild[i] = i;

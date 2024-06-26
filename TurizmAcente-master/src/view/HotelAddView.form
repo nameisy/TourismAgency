@@ -49,7 +49,7 @@
                   <background color="-529176"/>
                   <font name="AvantGarde Tr" size="14" style="1"/>
                   <foreground color="-529176"/>
-                  <text value="Add Hotel"/>
+                  <text value="ADD HOTEL"/>
                 </properties>
               </component>
               <hspacer id="f718d">
@@ -93,7 +93,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
-                  <foreground color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                 </properties>
               </component>
               <component id="53573" class="javax.swing.JTextField" binding="fld_hotel_district">
@@ -104,7 +105,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
-                  <foreground color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                 </properties>
               </component>
               <component id="f05a3" class="javax.swing.JTextField" binding="fld_hoteml_fllAdres">
@@ -115,7 +117,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
-                  <foreground color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                 </properties>
               </component>
               <component id="79e1e" class="javax.swing.JTextField" binding="fld_hotel_mail">
@@ -126,7 +129,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
-                  <foreground color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                 </properties>
               </component>
               <component id="c23e5" class="javax.swing.JTextField" binding="fld_hotel_phone">
@@ -137,7 +141,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
-                  <foreground color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                 </properties>
               </component>
               <component id="1b36e" class="javax.swing.JLabel">
@@ -212,6 +217,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                   <model/>
                 </properties>
               </component>
@@ -254,6 +261,8 @@
                     </constraints>
                     <properties>
                       <background color="-529176"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-9881265"/>
                       <text value="dd-MM-yyyy"/>
                     </properties>
                   </component>
@@ -263,7 +272,7 @@
                     </constraints>
                     <properties>
                       <font name="AvantGarde Tr" size="14" style="1"/>
-                      <foreground color="-529176"/>
+                      <foreground color="-9881265"/>
                       <text value="Season End"/>
                     </properties>
                   </component>
@@ -275,6 +284,8 @@
                     </constraints>
                     <properties>
                       <background color="-529176"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-9881265"/>
                       <text value="dd-MM-yyyy"/>
                     </properties>
                   </component>
@@ -299,8 +310,8 @@
                 </constraints>
                 <properties>
                   <background color="-529176"/>
-                  <font name="Gilda Display" size="16" style="1"/>
-                  <foreground color="-529176"/>
+                  <font name="AvantGarde Tr" size="14" style="1"/>
+                  <foreground color="-9881265"/>
                 </properties>
               </component>
               <component id="f5de8" class="javax.swing.JLabel">
@@ -323,7 +334,7 @@
             <properties>
               <font name="AvantGarde Tr" size="14" style="1"/>
               <foreground color="-529176"/>
-              <text value="Hotel Information"/>
+              <text value="HOTEL INFO"/>
             </properties>
           </component>
           <grid id="38035" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -358,6 +369,7 @@
                       <component id="4bf6c" class="javax.swing.JList" binding="lst_left_pro">
                         <constraints/>
                         <properties>
+                          <font name="AvantGarde Tr" size="12" style="3"/>
                           <foreground color="-9881265"/>
                           <model/>
                           <selectionBackground color="-9881265"/>
@@ -377,6 +389,7 @@
                         <constraints/>
                         <properties>
                           <enabled value="true"/>
+                          <font name="AvantGarde Tr" size="12" style="3"/>
                           <foreground color="-9881265"/>
                           <model/>
                           <selectionBackground color="-9881265"/>
@@ -452,6 +465,7 @@
                         <constraints/>
                         <properties>
                           <enabled value="true"/>
+                          <font name="AvantGarde Tr" size="12" style="3"/>
                           <foreground color="-9881265"/>
                           <layoutOrientation value="0"/>
                           <model/>
@@ -474,6 +488,7 @@
                       <component id="aa16b" class="javax.swing.JList" binding="lst_right_type">
                         <constraints/>
                         <properties>
+                          <font name="AvantGarde Tr" size="12" style="3"/>
                           <foreground color="-9881265"/>
                           <model/>
                           <selectionBackground color="-9881265"/>
@@ -536,7 +551,7 @@
                   <background color="-9881265"/>
                   <font size="14" style="1"/>
                   <foreground color="-529176"/>
-                  <text value="Hotel Pension Information"/>
+                  <text value="HOTEL PENSION INFO"/>
                 </properties>
               </component>
               <component id="a8302" class="javax.swing.JLabel">
@@ -546,7 +561,7 @@
                 <properties>
                   <font size="14" style="1"/>
                   <foreground color="-529176"/>
-                  <text value="Hotel Features"/>
+                  <text value="HOTEL FEATURES"/>
                 </properties>
               </component>
             </children>

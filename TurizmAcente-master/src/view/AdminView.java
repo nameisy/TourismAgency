@@ -67,7 +67,7 @@ public class AdminView extends Layout {
     }
 
     public void loadRoleTable(ArrayList<Object[]> userList) {
-        this.col_user = new Object[]{"ID", "K.Adı", "K.Şifre", "K.Rol"};
+        this.col_user = new Object[]{"ID", "S.Name", "U.Pass", "U.Role"};
         if (userList == null) {
             userList = this.userManager.getForTable(col_user.length, userManager.findAll());
         }

@@ -54,7 +54,7 @@ public class RoomAdd extends Layout {
     int childNum=0;
     List<String> listRightType;
 
-    // HotelManegementGUI yapıcı metodu
+    // HotelManegementGUI constructor method.
     public RoomAdd(Room room) {
         this.hotelManager = new HotelManager();
         this.propertyManager = new PropertyManager();
@@ -69,25 +69,25 @@ public class RoomAdd extends Layout {
         this.guiInitilaze(700, 550);
 
         Integer[] cmbAdult = {0,1, 2,3};
-        // DefaultComboBoxModel oluşturun ve tam sayıları modele ekleyin
+        // Create a DefaultComboBoxModel and add integers to the model.
         DefaultComboBoxModel<Integer> cmbAdultModel = new DefaultComboBoxModel<>(cmbAdult);
         cmb_adult_num.setModel(cmbAdultModel);
         cmb_adult_num.setSelectedIndex(0);
 
         Integer[] cmbChild = {0,1, 2, 3,};
-        // DefaultComboBoxModel oluşturun ve tam sayıları modele ekleyin
+        // Create a DefaultComboBoxModel and add integers to the model.
         DefaultComboBoxModel<Integer> cmbChildModel = new DefaultComboBoxModel<>(cmbChild);
         cmb_child_num.setModel(cmbChildModel);
         cmb_child_num.setSelectedIndex(0);
 
         Integer[] cmbRoomArea = {0,50,100,150,200};
-        // DefaultComboBoxModel oluşturun ve tam sayıları modele ekleyin
+        // Create a DefaultComboBoxModel and add integers to the model.
         DefaultComboBoxModel<Integer> cmbAreaModel = new DefaultComboBoxModel<>(cmbRoomArea);
         cmb_room_area.setModel(cmbAreaModel);
         cmb_room_area.setSelectedIndex(0);
 
         Integer[] integers = {0,1, 2, 3, 4, 5};
-        // DefaultComboBoxModel oluşturun ve tam sayıları modele ekleyin
+        // Create a DefaultComboBoxModel and add integers to the model.
         DefaultComboBoxModel<Integer> cmbStockModel = new DefaultComboBoxModel<>(integers);
         cmb_room_stock.setModel(cmbStockModel);
         cmb_room_stock.setSelectedIndex(0);
@@ -151,7 +151,7 @@ public class RoomAdd extends Layout {
                 int roomId = this.roomManager.save(this.room);
 
                 String room_properties = "";
-                for (int i = 1; i <= 7; i++) {  //room property ekleme
+                for (int i = 1; i <= 7; i++) {  // Add room property.
                     switch (i) {
                         case 1:
                             if (radioButton1.isSelected()) {
@@ -199,7 +199,7 @@ public class RoomAdd extends Layout {
             }
         });
 
-// gecelık ucret fıayt guncelleme olayları
+// overnight fee fee update events.
         cmb_room_type.addActionListener(e -> roomPriceCalcul());
         cmb_room_pansiyon_type.addActionListener(e -> roomPriceCalcul());
         cmb_adult_num.addActionListener(e -> roomPriceCalcul());
@@ -225,10 +225,10 @@ public class RoomAdd extends Layout {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    // Get the selected item as a String
+                    // Seçilen öğeyi bir String olarak alın.
                     Integer selectedInt = (Integer) e.getItem();
 
-                    // Now you can use the parsed integer value
+                    // Şimdi ayrıştırılmış tamsayı değerini kullanabilirsiniz.
                     if (selectedInt == 0) {
                         fld_child_price.setText(null);
                         fld_child_price.setEditable(false);
@@ -264,29 +264,29 @@ public class RoomAdd extends Layout {
 
     public int roomPriceCalcul(){
 
-        // Hizmet tiplerini ve fiyatlarını tutacak Map oluşturma
+        // Create a Map to hold service types and prices.
         int pansiyonTypePrice=0;
         int roomTypePrice=0;
         int adultPrice=0;
         int childPrice=0;
-        int roomAreaPrice = 0;  // Varsayılan değeri 0 olarak ayarla (hata durumu için)
+        int roomAreaPrice = 0;  // Set the default value to 0 (for error status).
         int totalPrice = 0;
 
         Map<String, Integer> servicePrices = new HashMap<>();
-        servicePrices.put("Ultra Her Şey Dahil", 500);
-        servicePrices.put("Her Şey Dahil", 400);
-        servicePrices.put("Oda Kahvaltı", 300);
-        servicePrices.put("Tam Pansiyon", 600);
-        servicePrices.put("Yarım Pansiyon", 450);
-        servicePrices.put("Sadece Yatak", 200);
-        servicePrices.put("Alkol Hariç", 350);
-        // cmb_room_hotel_type'dan seçilen otel pansiyon tipini alın
+        servicePrices.put("Ultra All Inclusive", 500);
+        servicePrices.put("All Inclusive", 400);
+        servicePrices.put("All Inclusive", 300);
+        servicePrices.put("Full Board", 600);
+        servicePrices.put("Half Board", 450);
+        servicePrices.put("Bed Only", 200);
+        servicePrices.put("Excluding Alcohol", 350);
+        // Get the selected hotel board type from cmb_room_hotel_type
        /* ComboItem hotelTypeComboItem = (ComboItem) cmb_room_pansiyon_type.getSelectedItem();
         String selectedHotelPansiyonName = hotelTypeComboItem.getValue();*/
         Object cmbRoomPansiyonTypeSelectedItem = cmb_room_pansiyon_type.getSelectedItem();
         if (cmbRoomPansiyonTypeSelectedItem != null) {
             String selectedHotelPansiyonName = cmbRoomPansiyonTypeSelectedItem.toString();
-            // Haritada seçilen otel pansiyon tipinin fiyatını kontrol et
+            // Check the price of the selected hotel hostel type on the map
             if (servicePrices.containsKey(selectedHotelPansiyonName)) {
                 pansiyonTypePrice = servicePrices.get(selectedHotelPansiyonName);
                 System.out.println(selectedHotelPansiyonName + " için fiyat: " + pansiyonTypePrice);
@@ -296,92 +296,92 @@ public class RoomAdd extends Layout {
         }
 
 
-        // Oda tiplerini ve fiyatlarını tutacak Map oluşturma
+        // Create a Map to keep room types and prices.
         Map<String, Integer> roomPrices = new HashMap<>();
 
-        // Room tipi ve fiyatlarını içeren haritayı oluştur
+        // Create a map with room types and prices.
         roomPrices = new HashMap<>();
-        roomPrices.put("Single Room", 200);         // Single Room için fiyat: 200 TL
-        roomPrices.put("Double Room", 300);         // Double Room için fiyat: 300 TL
+        roomPrices.put("Single Room", 200);         // Single Room price for: 200 TL
+        roomPrices.put("Double Room", 300);         // Double Room price for: 300 TL
         roomPrices.put("Junior Suite Room", 400);   // Junior Suite Room için fiyat: 400 TL
-        roomPrices.put("Suite Room", 500);          // Suite Room için fiyat: 500 TL
+        roomPrices.put("Suite Room", 500);          // Suite Room price for: 500 TL
 
 
         Object cmbRoomTypeSelectedItem = cmb_room_type.getSelectedItem();
         if (cmbRoomTypeSelectedItem != null) {
             String selectedType = cmbRoomTypeSelectedItem.toString();
-            // Haritada seçilen oda tipinin fiyatını kontrol et
+            // Check the price of the selected room type on the map.
             if (roomPrices.containsKey(selectedType)) {
-                // Seçilen oda tipine göre fiyatı bul
+                // Find the price according to the selected room type.
                 roomTypePrice = roomPrices.get(selectedType);
                 System.out.println(selectedType + " için fiyat: " + roomTypePrice);
             }
         }
 
-        // Oda yatak sayıalrına göre ve fiyatlarını tutacak Map oluşturma
+        // Creating a Map according to the number of beds in the room and keeping the prices.
         Map<Integer, Integer> adultBedPricer = new HashMap<>();
 
-        // Room tipi ve fiyatlarını içeren haritayı oluştur
+        // Create a map with room types and prices.
         adultBedPricer = new HashMap<>();
-        adultBedPricer.put(1, 200);         //  için fiyat: 200 TL
-        adultBedPricer.put(2, 400);         // için fiyat: 400 TL
-        adultBedPricer.put(3, 600);           //  için fiyat: 600 TL
+        adultBedPricer.put(1, 200);         //  price for: 200 TL
+        adultBedPricer.put(2, 400);         // price for: 400 TL
+        adultBedPricer.put(3, 600);           //  price for: 600 TL
 
         Object cmbAdultBedSelectedItem = cmb_adult_num.getSelectedItem();
         if (cmbAdultBedSelectedItem != null) {
             int selectedType = (int) cmbAdultBedSelectedItem;
-            // Haritada seçilen yatak fiyatını kontrol et
+            // Check the price of the selected bed on the map.
             if (adultBedPricer.containsKey(selectedType)) {
-                // Seçilen oda tipine göre fiyatı bul
+                // Find the price according to the selected room type.
                 adultPrice = adultBedPricer.get(selectedType);
                 System.out.println(selectedType + " için fiyat: " + adultPrice);
             }
         }
-        // Oda yatak sayıalrına göre ve fiyatlarını tutacak Map oluşturma
+        // Creating a Map according to the number of beds in the room and keeping the prices.
         Map<Integer, Integer> childBedPricer = new HashMap<>();
 
-        // Room tipi ve fiyatlarını içeren haritayı oluştur
+        // Create a map with room types and prices.
         childBedPricer = new HashMap<>();
-        childBedPricer.put(1, 100);         //  için fiyat: 100 TL
-        childBedPricer.put(2, 200);         // için fiyat: 200 TL
-        childBedPricer.put(3, 300);           //  için fiyat: 300 TL
+        childBedPricer.put(1, 100);         //  price for: 100 TL
+        childBedPricer.put(2, 200);         // price for: 200 TL
+        childBedPricer.put(3, 300);           //  price for: 300 TL
 
         Object cmbChildBedSelectedItem = cmb_child_num.getSelectedItem();
         if (cmbChildBedSelectedItem != null) {
             int selectedType = (int) cmbChildBedSelectedItem;
-            // Haritada seçilen yatak fiyatını kontrol et
+            // Check the price of the selected bed on the map.
             if (childBedPricer.containsKey(selectedType)) {
-                // Seçilen oda tipine göre fiyatı bul
+                // Find the price according to the selected room type.
                 childPrice = childBedPricer.get(selectedType);
                 System.out.println(selectedType + " için fiyat: " + childPrice);
             }
         }
         Map<Integer, Integer> roomArea = new HashMap<>();
 
-        // Room tipi ve fiyatlarını içeren haritayı oluştur
+        // Create a map with room types and prices.
         roomArea = new HashMap<>();
-        roomArea.put(50, 50);         //  için fiyat: 100 TL
-        roomArea.put(100, 100);         // için fiyat: 200 TL
-        roomArea.put(150, 150);           //  için fiyat: 300 TL
+        roomArea.put(50, 50);         //  price for 100 TL
+        roomArea.put(100, 100);         // price for 200 TL
+        roomArea.put(150, 150);           //  price for 300 TL
         roomArea.put(200, 200);
 
         Object cmbRoomAreaSelectedItem = cmb_room_area.getSelectedItem();
         if (cmbRoomAreaSelectedItem != null) {
             int selectedType = (int) cmbRoomAreaSelectedItem;
-            // Haritada seçilen yatak fiyatını kontrol et
+            // Check the price of the selected bed on the map.
             if (roomArea.containsKey(selectedType)) {
-                // Seçilen oda tipine göre fiyatı bul
+                // Find the price according to the selected room type.
                 roomAreaPrice = roomArea.get(selectedType);
-                System.out.println(selectedType + " için fiyat: " + roomAreaPrice);
+                System.out.println(selectedType + " price for: " + roomAreaPrice);
             }
         }
 
-      /*  //Yetişkin fiyatını kontrol et
+      /*  // Check the adult price.
         String adultPriceText = fld_adult_price.getText().trim();
         if (!adultPriceText.isEmpty()) {
             adultPrice = Integer.parseInt(adultPriceText);
         }
-        // Çocuk fiyatını kontrol et
+        // Check the child price!
         String childPriceText = fld_child_price.getText().trim();
         if (!childPriceText.isEmpty()) {
              childPrice = Integer.parseInt(childPriceText);
@@ -394,9 +394,9 @@ public class RoomAdd extends Layout {
 
         totalPrice = roomTypePrice+pansiyonTypePrice+adultPrice+childPrice+roomAreaPrice;
 
-        // Biçimlendirici oluştur (Virgülden sonra iki ondalık basamak kullan)
+        // Create a formatter (use two decimal places after the comma).
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        // Sayıyı belirli bir biçimde formatla
+        // Format the number in a specific format.
         String formattedText = decimalFormat.format(totalPrice);
         lbl_total_room_pricer.setText(formattedText + " TL ");
 
@@ -404,12 +404,12 @@ public class RoomAdd extends Layout {
 
     }
 
-    // Hotel isimlerini combo box'a aktaran metod
+    // Method that transfers hotel names to combo box.
     public void loadHotelNameCombo() {
         cmb_room_hotelname.removeAllItems();
         cmb_room_hotelname.addItem(new ComboItem(0, null));
 
-        ArrayList<Hotel> hotelList = hotelManager.findAll(); // Tüm otelleri al
+        ArrayList<Hotel> hotelList = hotelManager.findAll(); // Get all hotels
 
         for (Hotel hotel : hotelList) {
             cmb_room_hotelname.addItem(new ComboItem(hotel.getHotel_id(), hotel.getHotel_name()+" - "+hotel.getHotel_city()));

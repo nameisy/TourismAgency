@@ -1,73 +1,71 @@
-Projede veritabanı kullanılmış ve DB bağlantı konfigürasyonu doğru bir şekilde yapılmış
-core klasörü db sınıfı
+A database was used in the project and the DB connection configuration was made correctly.
+core folder db class
 
-Admin kullanıcı tipine, projede bahsedilen employee listeleme, ekleme, güncelleme, silme gibi işlemleri yapabilecek şekilde kodlama yapılmış mı?
+Has the admin user type been coded so that the employee can perform operations such as listing, adding, updating and deleting mentioned in the project?
 
 View >Admin View
-Acente çalışanına (employee) projede bahsedilen otel, sezon, pansiyon, otel özelliği, oda, oda özelliği listeleme, ekleme ve rezervasyon ekleme, silme gibi işlemleri yapacak şekilde kodlama yapılmış mı?
+Has the agency employee (employee) been coded to perform operations such as listing, adding and deleting the hotel, season, hostel, hotel feature, room, room feature mentioned in the project?
 
 view > HotelView
 
-Login işleminde kullanıcının kaydı olup olmadığı kontrol ediliyor mu, kaydı yoksa ya da hatalı giriş yapıldıysa kullanıcıya hatalı giriş mesajı veriliyor mu?
+During the login process, is it checked whether the user is registered or not? If the user is not registered or logged in incorrectly, is the user given an incorrect login message?
 
 view > admin view
 
-Acente personeli anlaşmalı olduğu otelleri sisteme otel adı, adres, E-posta, telefon, yıldız, tesis özellikleri bilgilerini girerek kaydedebiliyor mu?
+Can the agency staff register the contracted hotels into the system by entering the hotel name, address, e-mail, phone number, stars and facility features?
 
 view > hotelView
 view > hotelAddView
 view > hotelUpdateView
 
-Otellerin sisteme eklenmesinde dönem yönetimi yapılmış mı
+Is period management carried out when adding hotels to the system?
 
-view > hotelAddView > 100. satırbaslangıcı
+view > hotelAddView > start of line 100
 
-Otellerin sisteme eklenmesinde pansiyon tipi yönetimi yapılmış mı?
+Has hostel type management been done when adding hotels to the system?
 
-view > RoomAdd > 132. satır
+view > RoomAdd > line 132
 
-Acente personeli sisteme kayıtlı otellere oda ekleyebiliyor mu? Oda eklerken oda tipi (Single, Double, Junior Suite, Suite vb.), oda özellikleri (Yatak Sayısı, Televizyon, Minibar vb.) ve stok miktarı girişi dikkate alınmış mı?
+Can agency staff add rooms to hotels registered in the system? When adding a room, have the room type (Single, Double, Junior Suite, Suite, etc.), room features (Number of Beds, Television, Minibar, etc.) and stock quantity been taken into account?
 
 view > RoomAdd
 
-Sisteme yeni eklenen odaların fiyatları, sezon, pansiyon tipi ve konaklayanların yetişkin/çocuk olma durumuna göre belirleniyor mu?
+Are the prices of newly added rooms determined according to the season, hostel type and whether the guests are adults or children?
 
-view > RoomAdd >265. satır roomPriceCalcul() metodu
+view > RoomAdd >265. row roomPriceCalcul() method
 
-Acente çalışanı, tarih aralığına, otel ismine, şehire göre odaları başarılı bir şekilde arayabiliyor mu? (4 puan)
+Can the agency employee successfully search for rooms by date range, hotel name, city? (4 points)
 
-view > HotelView > 154. satır
+view > HotelView > line 154
 
-Arama sonucuna uygun otellerin bilgileri (adres, yıldız, otel imkanları vb) ve odaların bilgileri (giriş, çıkış tarihi, yetişkin, çocuk sayısı, yatak sayısı, varsa, mini bar, TV vb) kullanıcıya gösteriliyor mu?
+Are the information of the hotels (address, stars, hotel facilities, etc.) and the information of the rooms (check-in, check-out date, number of adults, children, number of beds, if any, mini bar, TV, etc.) that are suitable for the search result displayed to the user?
 
-view > HotelView >   loadRoomTable() ve   loadRoomPropertiesTable(); metotları
+view > HotelView > loadRoomTable() and loadRoomPropertiesTable(); methods
 
-Misafir bilgisi, kalınacak gece sayısı ve oda fiyatına göre konaklamaya ait fiyat başarılı bir şekilde hesaplanıyor mu?
+Is the price of the accommodation calculated successfully based on guest information, number of nights to stay and room price?
 
-view > ReservationAdd >  136.satır > btn_reser_price
+view > ReservationAdd > line 136 > btn_reser_price
 
-Acenta çalışanı müşterinin talebine uygun odayı müşteri bilgilerini girerek başarılı şekilde rezervasyon yapabiliyor mu?
+Can the agency employee successfully book the room that suits the customer's request by entering customer information?
 
-view > ReservationAdd >  199.satır btn_add_reservation
+view > ReservationAdd > line 199 btn_add_reservation
 
-Rezervasyon yapılan odanın stoğu azalıyor mu?(4 puan)
+Is the stock of the booked room decreasing? (4 points)
 
-view > ReservationAdd >  236.satır stockUpdate
+view > ReservationAdd > line 236 stockUpdate
 
-Acente çalışanları, sistem üzerinden yapılan rezervasyonları başarılı bir şekilde listeleye biliyor mu?
+Are agency employees able to successfully list the reservations made through the system?
 
-view > HotelView > loadReserTable() metotu
+view > HotelView > loadReserTable() method
 
-Acente çalışanları, sistem üzerinden yapılan rezervasyonları başarılı bir şekilde güncelleyebiliyor mu?
+Can agency employees successfully update the reservations made through the system?
 
 view > RevervationUpdateView
 
-Acente çalışanları, sistem üzerinden yapılan rezervasyonları başarılı bir şekilde silebiliyor mu?
+Can agency employees successfully delete reservations made through the system?
 
-view > HotelView > 475. satır > reserMenuList() > sil
+view > HotelView > line 475 > reserMenuList() > delete
 
-Rezervasyon silme işleminden sonra ilgili odanın stoğu artıyor mu?
+Does the stock of the relevant room increase after deleting the reservation?
 
-view > HotelView > 484. satır > reserMenuList() > sil > stockUpdate
-
-
+view > HotelView > line 484 > reserMenuList() > delete > stockUpdate

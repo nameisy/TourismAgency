@@ -65,7 +65,7 @@ public class RevervationUpdateView extends  Layout{
                     }
                     else{Helper.showMsg("error");}
                 }else{
-                    Helper.showMsg("ID bulunamadı");
+                    Helper.showMsg("ID not found");
                 }
             }
         });

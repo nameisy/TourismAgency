@@ -20,9 +20,10 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-529176"/>
+              <background color="-9881265"/>
               <font name="AvantGarde Tr" size="14" style="1"/>
-              <text value="User info"/>
+              <foreground color="-529176"/>
+              <text value="USER INFO"/>
             </properties>
           </component>
           <component id="a0bf3" class="javax.swing.JButton" binding="button1" default-binding="true">
@@ -42,6 +43,7 @@
         <constraints border-constraint="Center"/>
         <properties>
           <background color="-9881265"/>
+          <font name="AvantGarde Tr" size="14" style="1"/>
         </properties>
         <border type="none"/>
         <children>
@@ -190,7 +192,8 @@
                     </constraints>
                     <properties>
                       <background color="-9881265"/>
-                      <text value="Oda Ekle"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Add Room"/>
                     </properties>
                   </component>
                   <hspacer id="f9c90">
@@ -215,7 +218,8 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Hotel Adı"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Hotel Name"/>
                     </properties>
                   </component>
                   <component id="cf014" class="javax.swing.JLabel">
@@ -223,7 +227,8 @@
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Giriş Tarihi 00-00-0000"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Check-In Date 00-00-0000"/>
                     </properties>
                   </component>
                   <component id="8ebdc" class="javax.swing.JTextField" binding="fld_chec_in">
@@ -232,14 +237,21 @@
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <background color="-9881265"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-529176"/>
+                    </properties>
                   </component>
                   <component id="73e9f" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Çıkış Tarihi  00-00-0000"/>
+                      <background color="-9881265"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-529176"/>
+                      <text value="Check-Out Date   00-00-0000"/>
                     </properties>
                   </component>
                   <component id="f6fab" class="javax.swing.JTextField" binding="fld_check_out">
@@ -249,6 +261,9 @@
                       </grid>
                     </constraints>
                     <properties>
+                      <background color="-9881265"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-529176"/>
                       <text value=""/>
                     </properties>
                   </component>
@@ -257,7 +272,8 @@
                       <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Yetişkin Misafir Sayısı"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Adult Guests"/>
                     </properties>
                   </component>
                   <component id="f2be2" class="javax.swing.JLabel">
@@ -265,7 +281,8 @@
                       <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Çocuk Misafir Sayısı"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Child Guests"/>
                     </properties>
                   </component>
                   <component id="f6a5b" class="javax.swing.JButton" binding="btn_room_sh">
@@ -273,21 +290,27 @@
                       <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Oda Ara"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="FIND ROOM"/>
                     </properties>
                   </component>
                   <component id="a4c60" class="javax.swing.JComboBox" binding="cmb_region_hotelName">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <background color="-9881265"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-529176"/>
+                    </properties>
                   </component>
                   <component id="b4f63" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Bölge"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Region"/>
                     </properties>
                   </component>
                   <component id="d1f9b" class="javax.swing.JButton" binding="cmb_room_list_clear">
@@ -295,7 +318,8 @@
                       <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Temizle"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <text value="Clear"/>
                     </properties>
                   </component>
                   <component id="9fa95" class="javax.swing.JComboBox" binding="cmb_city">
@@ -303,6 +327,9 @@
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <background color="-9881265"/>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
+                      <foreground color="-529176"/>
                       <model>
                         <item value="Adana"/>
                         <item value="Adıyaman"/>
@@ -393,6 +420,7 @@
                       <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
                       <model>
                         <item value="1"/>
                         <item value="2"/>
@@ -407,6 +435,7 @@
                       <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
+                      <font name="AvantGarde Tr" size="14" style="1"/>
                       <model>
                         <item value="0"/>
                         <item value="1"/>
@@ -538,6 +567,7 @@
                         </constraints>
                         <properties>
                           <background color="-9881265"/>
+                          <font name="AvantGarde Tr" size="12" style="0"/>
                         </properties>
                         <border type="none"/>
                         <children>

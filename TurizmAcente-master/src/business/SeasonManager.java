@@ -54,7 +54,7 @@ public class SeasonManager {
 
   public boolean update (Season season){
         if(season.getHotel_id()==0 ){
-            Helper.showMsg(" ID bulunamadı");
+            Helper.showMsg("ID not found");
             return false;
         }
         return this.seasonDao.update(season);
@@ -64,11 +64,4 @@ public class SeasonManager {
     public Season getBySeason(int id) {
         return this.seasonDao.getBySeason(id);
     }
-   /*   public boolean deleteType(int hotelId,List<String> typeNames ){
-        if(hotelId ==0 ){
-            Helper.showMsg(" ID bulunamadı");
-            return false;
-        }
-        return this.seasonDao.deleteType(hotelId,typeNames);
-    }*/
 }

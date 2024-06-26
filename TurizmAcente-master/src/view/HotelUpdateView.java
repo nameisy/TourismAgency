@@ -67,7 +67,7 @@ public class HotelUpdateView extends Layout {
 
     List<String> listRightType;
 
-    // HotelManegementGUI yapıcı metodu
+    // HotelManegementGUI constructor method.
     public HotelUpdateView(Hotel hotel, Property property, Types types , Season season) {
         this.hotelManager = new HotelManager();
         this.hotel = hotel;
@@ -82,25 +82,25 @@ public class HotelUpdateView extends Layout {
 
 
         Integer[] integers = {1, 2, 3, 4, 5};
-        // DefaultComboBoxModel oluşturun ve tam sayıları modele ekleyin
+        // Create a DefaultComboBoxModel and add integers to the model.
         DefaultComboBoxModel<Integer> model = new DefaultComboBoxModel<>(integers);
         cmb_hotel_star.setModel(model);
 
-        // GUI bileşenlerini oluşturma işlemleri
+        // Creating GUI components.
         hotelPropertyListComponent();
         hotelTypeListComponent();
         hotelSetHotelInfo();
 
 
 
-        // Kaydetme butonuna ActionListener ekleme
+        // Adding an ActionListener to the save button.
         btn_hotel_save.addActionListener(e -> {
             boolean isHotel= false;
             boolean isProper= false;
             boolean isType= false;
             boolean isSeason= false;
 
-            // Yeni bir Property nesnesi oluşturarak propertyNames listesini set etme
+            // Create a new Property object and set the propertyNames list.
             List<String> propertyNames = Helper.getListFromJList(lst_right_pro);
 
             JTextField[] checkFieldList = {
@@ -114,7 +114,7 @@ public class HotelUpdateView extends Layout {
                     this.fld_season_end
             };
             if (Helper.isFieldListEmpty(checkFieldList)) {
-                Helper.showMsg("Otel Bilgi Kısmı Eksik");
+                Helper.showMsg("Hotel Information Section Missing!");
             }else{
                 //this.hotel.setHotel_id(tempHotelID);
                 this.hotel.setHotel_name(fld_hotel_name.getText());
@@ -140,7 +140,7 @@ public class HotelUpdateView extends Layout {
                         this.season.setSeason_end(LocalDate.parse(fld_season_end.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                         isSeason = this.seasonManager.update(this.season);
                     }else{
-                        Helper.showMsg("Geçersiz tarih girildi");
+                        Helper.showMsg("Invalid date entered!");
                     }
                     isHotel = this.hotelManager.update(this.hotel);
                     this.property.setPropertyNames(propertyNames);
@@ -149,22 +149,22 @@ public class HotelUpdateView extends Layout {
                     List<String> listRightType = Helper.getListFromJList(lst_right_type);
                     isType = this.typeManager.update(this.hotel.getHotel_id(),listRightType);
                     if (isHotel){
-                        Helper.showMsg("Hotel bilgi güncelleme başarılı");
+                        Helper.showMsg("Hotel information update is successful.");
                     }else {
-                        Helper.showMsg("Hotel bilgi güncelleme başarısız");
+                        Helper.showMsg("Hotel information update failed.");
                     }
                     if (isProper){
-                        Helper.showMsg("Ozellık güncelleme başarılı");
+                        Helper.showMsg("Feature update successful.");
                     }else{
-                        Helper.showMsg("Ozellilk  güncelleme başarısız");
+                        Helper.showMsg("Feature update failed.");
                     }
                     if (isType) {
-                        Helper.showMsg("Type  güncelleme başarılı");
+                        Helper.showMsg("Type update successful.");
                     } else {
-                        Helper.showMsg("Type  güncelleme başarısız");
+                        Helper.showMsg("Type update failed!");
                     }
                     if (isSeason) {
-                        Helper.showMsg("Season  güncelleme başarılı");
+                        Helper.showMsg("Season update successful.");
                     } else {
                         Helper.showMsg("Season  güncelleme başarısız");
                     }
@@ -186,16 +186,16 @@ public class HotelUpdateView extends Layout {
 
     }
 
-// Sezon türüne göre tarihleri gösteren metod
+    // Method that shows dates by season type.
         private void showSeasonDates(String seasonType) {
             List<Season> seasons = seasonManager.getBySeasonList(season.getHotel_id());
             if (seasons != null && !seasons.isEmpty()) {
                 for (Season seasonList : seasons) {
                     if (seasonType.equals(seasonList.getSeasonName())) {
-                        // İlgili sezon türüne göre tarihleri ekrana yazdır
+                        // Print the dates on the screen according to the related season type.
                         this.fld_season_start.setText(seasonList.getSeason_start().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                         this.fld_season_end.setText(seasonList.getSeason_end().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                        break; // İlgili sezon bulunduğunda döngüden çık
+                        break; // Exit the loop when the relevant season is found.
                     }
                 }
             }
@@ -217,19 +217,19 @@ public class HotelUpdateView extends Layout {
             this.fld_season_start.setText(this.season.getSeason_start().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
             this.fld_season_end.setText(this.season.getSeason_end().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
-///sag lsite ozellılkerı otel bılgısını getırıyor
+// right list properties get hotel information
 
          List<String> hotelPropertyList = property.getPropertyNames();
          for (String property : hotelPropertyList) {
-             rightListPropertyModel.addElement(property);  // Her bir özelliği model içine ekle
+             rightListPropertyModel.addElement(property);  // Add each property to the model.
          }
          lst_right_pro.setModel(rightListPropertyModel);
-         // sol listedeki otel tıp bılgısnı getırıyor
+         // the hotel on the left list brings medical information.
             ArrayList<Object[]> hotelTypesList = typeManager.getForTable(2, types.getHotel_id());
 
-         // ArrayList'ten alınan verileri model üzerine ekle
+         // Add the data from ArrayList to the model.
              for (Object[] rowObject : hotelTypesList) {
-                 rightListTypeModel.addElement((String) rowObject[1]); // Sadece type_name ekleniyor
+                 rightListTypeModel.addElement((String) rowObject[1]); // Only type_name is added.
              }
              lst_right_type.setModel(rightListTypeModel);
         //}
@@ -238,13 +238,13 @@ public class HotelUpdateView extends Layout {
 
     public void hotelPropertyListComponent() {
         leftListPropertyModel = new DefaultListModel<>();
-        String[] propertyArray = {"Ücretsiz Otopark",
-                "Ücretsiz WiFi",
-                "Yüzme Havuzu",
-                "Fitness Center",
+        String[] propertyArray = {"Free Car Parking",
+                "Free WiFi",
+                "Swimming Pool",
+                "Fitness Centre",
                 "Hotel Concierge",
                 "SPA",
-                "7/24 Oda Servisi"};
+                "24/7 Room Service"};
 
         for (int i = 0; i < propertyArray.length; i++) {
             leftListPropertyModel.addElement(propertyArray[i]);
@@ -281,20 +281,20 @@ public class HotelUpdateView extends Layout {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (leftListPropertyModel.getSize() == rightListPropertyModel.getSize()) {
-                    Helper.showMsg("Listenin tümü mevcut");
+                    Helper.showMsg("The full list is available.");
                 } else {
-                    // Sol listedeki tüm öğeleri al
+                    // Get all items in the left list.
                     List<String> allItems = new ArrayList<>();
                     for (int i = 0; i < leftListPropertyModel.getSize(); i++) {
                         allItems.add(leftListPropertyModel.getElementAt(i));
                     }
-                    // Sağ listedeki mevcut öğeleri bir List'e al
+                    // Get the current items in the right list into a List.
                     List<String> existingItems = new ArrayList<>();
                     for (int i = 0; i < rightListPropertyModel.getSize(); i++) {
                         existingItems.add(rightListPropertyModel.getElementAt(i));
 
                     }
-                    // Sol listedeki tüm öğeleri sağ listeye ekle (ancak sağ listede olmayanları)
+                    // Add all items in the left list to the right list (but not in the right list).
                     for (String item : allItems) {
                         if (!existingItems.contains(item)) {
                             rightListPropertyModel.addElement(item);
@@ -308,21 +308,21 @@ public class HotelUpdateView extends Layout {
         btn_multi_left.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Seçilen öğeleri al
+                // Get selected items.
                 Object[] selectedValues = lst_right_pro.getSelectedValues();
 
                 if (selectedValues != null && selectedValues.length > 0) {
-                    // Tüm seçilen öğelerin, listenin boyutundan küçük olup olmadığını kontrol et
+                    // Check that all selected items are smaller than the size of the list.
                     if (selectedValues.length < rightListPropertyModel.getSize()) {
-                        // Seçilen öğeleri listeden kaldır
+                        // Remove selected items from the list.
                         for (Object selectedValue : selectedValues) {
                             rightListPropertyModel.removeElement(selectedValue);
                         }
                     } else {
-                        Helper.showMsg("Tüm özellikleri silemezsiniz. En az bir özellik olmalı.");
+                        Helper.showMsg("You cannot delete all features. There must be at least one feature.");
                     }
                 } else {
-                    Helper.showMsg("Özellik Seçiniz");
+                    Helper.showMsg("Select Feature.");
                 }
             }
 
@@ -333,13 +333,13 @@ public class HotelUpdateView extends Layout {
         leftListTypeModel = new DefaultListModel<>();
 
         String[] typeArray = {
-                "Ultra Her Şey Dahil",
-                "Her Şey Dahil",
-                "Oda Kahvaltı",
-                "Tam Pansiyon",
-                "Yarım Pansiyon",
-                "Sadece Yatak",
-                "Alkol Hariç"
+                "Ultra All Inclusive",
+                "All Inclusive",
+                "Bed and Breakfast",
+                "Full Board",
+                "Half Board",
+                "Just the bed",
+                "Alcohol Excluded",
         };
 
         for (int i = 0; i < typeArray.length; i++) {
@@ -357,9 +357,9 @@ public class HotelUpdateView extends Layout {
                     rightListTypeModel.addElement(getLeftListValue);
                     lst_right_type.setModel(rightListTypeModel);
                 } else if (getLeftListValue == null) {
-                    Helper.showMsg("Özellik Seçiniz");
+                    Helper.showMsg("Select Feature.");
                 } else {
-                    Helper.showMsg("Listede Mevcut");
+                    Helper.showMsg("Available on the List.");
                 }
             }
         });
@@ -378,21 +378,21 @@ public class HotelUpdateView extends Layout {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (leftListTypeModel.getSize() == rightListTypeModel.getSize()) {
-                    Helper.showMsg("Listenin tümü mevcut");
+                    Helper.showMsg("The full list is available.");
                 } else {
-                    // Sol listedeki tüm öğeleri al
+                    // Get all items in the left list.
                     List<String> allItems = new ArrayList<>();
                     for (int i = 0; i < leftListTypeModel.getSize(); i++) {
                         allItems.add(leftListTypeModel.getElementAt(i));
                     }
 
-                    // Sağ listedeki mevcut öğeleri bir List'e al
+                    // Get the current items in the right list into a List.
                     List<String> existingItems = new ArrayList<>();
                     for (int i = 0; i < rightListTypeModel.getSize(); i++) {
                         existingItems.add(rightListTypeModel.getElementAt(i));
                     }
 
-                    // Sol listedeki tüm öğeleri sağ listeye ekle (ancak sağ listede olmayanları)
+                    // Add all items in the left list to the right list (but not in the right list).
                     for (String item : allItems) {
                         if (!existingItems.contains(item)) {
                             rightListTypeModel.addElement(item);
@@ -407,22 +407,22 @@ public class HotelUpdateView extends Layout {
         btn_multi_left_type.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Seçilen öğeleri al
+                // Get selected items.
                 Object[] selectedValues = lst_right_type.getSelectedValues();
 
                 if (selectedValues != null && selectedValues.length > 0) {
-                    // Tüm seçilen öğelerin, listenin boyutundan küçük olup olmadığını kontrol et
+                    // Check that all selected items are smaller than the size of the list.
                     if (selectedValues.length < rightListTypeModel.getSize()) {
-                        // Seçilen öğeleri listeden kaldır
+                        // Remove selected items from the list.
                         for (Object selectedValue : selectedValues) {
                             rightListTypeModel.removeElement(selectedValue);
                         }
                             deletTypelistMetot(selectedValues);
                     } else {
-                        Helper.showMsg("Tüm özellikleri silemezsiniz. En az bir özellik olmalı.");
+                        Helper.showMsg("You cannot delete all features. There must be at least one feature.");
                     }
                 } else {
-                    Helper.showMsg("Özellik Seçiniz");
+                    Helper.showMsg("Select Feature.");
                 }
             }
 

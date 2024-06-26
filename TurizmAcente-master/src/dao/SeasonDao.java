@@ -86,7 +86,7 @@ public class SeasonDao {
 
             while (resultSet.next()) {
                 Season season = match(resultSet);
-                // Sezon türüne göre başlangıç ve bitiş tarihlerini ayarla
+                // Set start and end dates according to season type.
 
                 seasonArrayList.add(season);
             }
@@ -107,7 +107,7 @@ public class SeasonDao {
 
             while (rs.next()) {
                 Season season = match(rs);
-                seasons.add(season); // Her sezonu listeye ekle
+                seasons.add(season); // Add each season to the list.
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -139,24 +139,6 @@ public class SeasonDao {
         return season;
     }
 
-
-  /*  public boolean save( Season season, int hotelId) {
-        String insertQuery = "INSERT INTO hotel_seasons (hotel_id, start_date, end_date, season_type) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement pr = con.prepareStatement(insertQuery)) {
-            pr.setInt(1, hotelId); // hotel_id parametresi olarak gelen değeri kullan
-            pr.setDate(2, Date.valueOf(season.getSeason_start()));
-            pr.setDate(3, Date.valueOf(season.getSeason_end()));
-            pr.setString(4, season.getSeasonName());
-
-            int rowsAffected = pr.executeUpdate();
-            return rowsAffected == 1; // Ekleme işlemi başarılıysa true döndür
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("An error occurred while inserting new season: " + e.getMessage());
-            return false; // Ekleme işlemi başarısız olduysa false döndür
-        }
-
-    }*/
   public boolean save(List<Season> seasons, int hotelId) {
       String insertQuery = "INSERT INTO hotel_seasons (hotel_id, start_date, end_date, season_type) VALUES (?, ?, ?, ?)";
       boolean success = true;
@@ -195,11 +177,11 @@ public class SeasonDao {
             pr.setString(4, season.getSeasonName());
 
             int rowsAffected = pr.executeUpdate();
-            return rowsAffected > 0; // Güncelleme başarılı ise true döndür
+            return rowsAffected > 0; // Return true if the update was successful
 
         } catch (SQLException e) {
-            e.printStackTrace(); // Hata durumunda hatayı yazdır
-            return false; // Güncelleme başarısız ise false döndür
+            e.printStackTrace(); // Print the error in case of an error.
+            return false; // Return false if update failed
         }
     }
 

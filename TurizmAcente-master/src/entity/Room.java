@@ -54,7 +54,7 @@ public class Room {
         this.hotelId = hotelId;
     }
 
-    // Diğer getter ve setter metotları
+    // Other getter and setter methods.
 
 
     public int getRoomPrice() {
@@ -129,7 +129,7 @@ public class Room {
         this.hotelId = hotelId;
     }
 
-    // toString metodu (isteğe bağlı)
+    // toString method (optional)
     @Override
     public String toString() {
         return "Room{" +

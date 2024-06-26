@@ -45,7 +45,7 @@ public class TypeManager {
 
     public boolean update (int hotelId, List<String> rightList){
         if(hotelId ==0 ){
-            Helper.showMsg(" ID bulunamadı");
+            Helper.showMsg(" ID not found");
             return false;
         }
         return this.typeDao.update(hotelId,rightList);
@@ -55,7 +55,7 @@ public class TypeManager {
     }
     public boolean deleteType(int hotelId,List<String> typeNames ){
         if(hotelId ==0 ){
-            Helper.showMsg(" ID bulunamadı");
+            Helper.showMsg(" ID not found");
             return false;
         }
         return this.typeDao.deleteType(hotelId,typeNames);

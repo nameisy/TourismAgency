@@ -96,7 +96,7 @@ public class HotelDao {
                 if (rowsAffected == 1) {
                     ResultSet generatedKeys = pr.getGeneratedKeys();
                     if (generatedKeys.next()) {
-                        return generatedKeys.getInt(1); // Yeni otel ID'sini döndür
+                        return generatedKeys.getInt(1); // Rotate the new hotel ID.
                     }
                 }
             } else {

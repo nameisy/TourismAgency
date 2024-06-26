@@ -10,7 +10,7 @@ public class Season {
     private int hotel_id;
     private String seasonName;
 
-    public Season() { // Sezon türlerine göre başlangıç ve bitiş tarihlerini tutacak ekstra alanlar
+    public Season() { // Extra fields to hold start and end dates according to season types.
     }
 
     public Season(int seasonId, LocalDate season_start, LocalDate season_end, String seasonName , int hotel_id) {

@@ -69,7 +69,7 @@ public class HotelAddView extends Layout {
 
     List<String> listRightType;
 
-    // HotelManegementGUI yapıcı metodu
+    // HotelManegementGUI constructor method.
     public HotelAddView(Hotel hotel,Property property, Types types ,Season season) {
         this.hotelManager = new HotelManager();
         this.hotel = hotel;
@@ -85,24 +85,24 @@ public class HotelAddView extends Layout {
         rightListPropertyModel = new DefaultListModel<>();
 
         Integer[] integers = {1, 2, 3, 4, 5};
-        // DefaultComboBoxModel oluşturun ve tam sayıları modele ekleyin
+        // Create a DefaultComboBoxModel and add integers to the model.
         DefaultComboBoxModel<Integer> model = new DefaultComboBoxModel<>(integers);
         cmb_hotel_star.setModel(model);
 
-        // GUI bileşenlerini oluşturma işlemleri
+        // Creating GUI components.
         hotelPropertyListComponent();
         hotelTypeListComponent();
 
 
 
 
-        // Kaydetme butonuna ActionListener ekleme
+        // Adding an ActionListener to the save button.
         btn_hotel_save.addActionListener(e -> {
             boolean isProper = false;
             boolean isType = false;
             boolean isSeason = false;
 
-            // Yeni bir Property nesnesi oluşturarak propertyNames listesini set etme
+            // Create a new Property object and set the propertyNames list.
 
             JTextField[] checkFieldList = {
                     this.fld_hotel_name,
@@ -118,10 +118,10 @@ public class HotelAddView extends Layout {
                     Helper.isList_J_Empty(lst_right_pro) ||
                     Helper.isList_J_Empty(lst_right_type) ||
                     (!rd_btn_sum.isSelected() || !rd_btn_win.isSelected())){
-                Helper.showMsg("Zorunlu Kısımlar Eksik");
+                Helper.showMsg("Mandatory Sections Missing!");
             }
-            else if (!Helper.isValidDate(fld_season_start.getText(),("dd-MM-yyyy")) || !Helper.isValidDate(fld_season_end.getText(),("dd-MM-yyyy"))) {
-                Helper.showMsg("Geçersiz tarih girildi");
+            else if (!Helper.isValidDate(fld_season_start.getText(),("dd-mm-yyyy")) || !Helper.isValidDate(fld_season_end.getText(),("dd-mm-yyyy"))) {
+                Helper.showMsg("Invalid date entered!");
             }else{
                 //this.hotel.setHotel_id(tempHotelID);
                 this.hotel.setHotel_name(fld_hotel_name.getText());
@@ -140,7 +140,7 @@ public class HotelAddView extends Layout {
                 summerSeason.setSeason_end(LocalDate.parse(fld_season_end.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
                 seasons.add(summerSeason);
 
-// Winter sezonunu oluşturup listeye ekleme
+//Create the Winter season and add it to the list
                 Season winterSeason = new Season();
                 winterSeason.setSeasonName("Winter");
                 winterSeason.setSeason_start(LocalDate.parse(fld_season_start.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
@@ -163,23 +163,23 @@ public class HotelAddView extends Layout {
                             isSeason = this.seasonManager.save(seasons, hotelId);
 
                             if (isProper) {
-                                Helper.showMsg("Ozellık kayıt başarılı");
+                                Helper.showMsg("Feature recording is successful.");
                             } else {
-                                Helper.showMsg("Ozellilk  kayıt başarısız");
+                                Helper.showMsg("Speciality registration failed.");
                             }
                             if (isType) {
-                                Helper.showMsg("Type  kayıt başarılı");
+                                Helper.showMsg("Type recording successful.");
                             } else {
-                                Helper.showMsg("Type  kayıt başarısız");
+                                Helper.showMsg("Type registration failed.");
                             }
                             if (isSeason) {
-                                Helper.showMsg("Season  kayıt başarılı");
+                                Helper.showMsg("Season recording successful.");
                             } else {
-                                Helper.showMsg("Season  kayıt başarısız");
+                                Helper.showMsg("Season registration failed.");
                             }
-                            Helper.showMsg("Hotel bilgi kayıt başarılı");
+                            Helper.showMsg("Hotel information recording successful.");
                         }else {
-                            Helper.showMsg("Hotel bilgi kayıt başarısız");
+                            Helper.showMsg("Hotel fails to record information.");
                         }
                      }
         });
@@ -187,13 +187,13 @@ public class HotelAddView extends Layout {
     }
     public void hotelPropertyListComponent() {
         leftListPropertyModel = new DefaultListModel<>();
-        String[] propertyArray = {"Ücretsiz Otopark",
-                "Ücretsiz WiFi",
-                "Yüzme Havuzu",
-                "Fitness Center",
+        String[] propertyArray = {"Free Car Parking",
+                "Free WiFi",
+                "Swimming Pool",
+                "Fitness Centre",
                 "Hotel Concierge",
                 "SPA",
-                "7/24 Oda Servisi"};
+                "24/7 Room Service"};
 
         for (int i = 0; i < propertyArray.length; i++) {
             leftListPropertyModel.addElement(propertyArray[i]);
@@ -234,18 +234,18 @@ public class HotelAddView extends Layout {
                 if (leftListPropertyModel.getSize() == rightListPropertyModel.getSize()) {
                     Helper.showMsg("Listenin tümü mevcut");
                 } else {
-                    // Sol listedeki tüm öğeleri al
+                    // Get all items in the left list.
                     List<String> allItems = new ArrayList<>();
                     for (int i = 0; i < leftListPropertyModel.getSize(); i++) {
                         allItems.add(leftListPropertyModel.getElementAt(i));
                     }
-                    // Sağ listedeki mevcut öğeleri bir List'e al
+                    // Get the current items in the right list into a List.
                     List<String> existingItems = new ArrayList<>();
                     for (int i = 0; i < rightListPropertyModel.getSize(); i++) {
                         existingItems.add(rightListPropertyModel.getElementAt(i));
 
                     }
-                    // Sol listedeki tüm öğeleri sağ listeye ekle (ancak sağ listede olmayanları)
+                    // Add all items in the left list to the right list.
                     for (String item : allItems) {
                         if (!existingItems.contains(item)) {
                             rightListPropertyModel.addElement(item);
@@ -269,13 +269,13 @@ public class HotelAddView extends Layout {
         leftListTypeModel = new DefaultListModel<>();
 
         String[] typeArray = {
-                "Ultra Her şey Dahil",
-                "Her şey Dahil",
-                "Oda Kahvaltı",
-                "Tam Pansiyon",
-                "Yarım Pansiyon",
-                "Sadece Yatak",
-                "Alkol Hariç"
+                "Ultra All Inclusive",
+                "All Inclusive",
+                "Bed and Breakfast",
+                "Full Board",
+                "Half Board",
+                "Just the bed",
+                "Alcohol Excluded",
         };
 
         for (int i = 0; i < typeArray.length; i++) {
@@ -293,9 +293,9 @@ public class HotelAddView extends Layout {
                     rightListTypeModel.addElement(getLeftListValue);
                     lst_right_type.setModel(rightListTypeModel);
                 } else if (getLeftListValue == null) {
-                    Helper.showMsg("Özellik Seçiniz");
+                    Helper.showMsg("Available on the List");
                 } else {
-                    Helper.showMsg("Listede Mevcut");
+                    Helper.showMsg("Available on the List!");
                 }
             }
         });
@@ -305,28 +305,28 @@ public class HotelAddView extends Layout {
             if (lst_right_type.getSelectedValue() != null) {
                 rightListTypeModel.removeElement(lst_right_type.getSelectedValue());
             } else {
-                Helper.showMsg("Özellik Seçiniz");
+                Helper.showMsg("Select Feature.");
             }
         });
         btn_multi_right_type.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (leftListTypeModel.getSize() == rightListTypeModel.getSize()) {
-                    Helper.showMsg("Listenin tümü mevcut");
+                    Helper.showMsg("The complete list is available.");
                 } else {
-                    // Sol listedeki tüm öğeleri al
+                    // Get all items in the left list.
                     List<String> allItems = new ArrayList<>();
                     for (int i = 0; i < leftListTypeModel.getSize(); i++) {
                         allItems.add(leftListTypeModel.getElementAt(i));
                     }
 
-                    // Sağ listedeki mevcut öğeleri bir List'e al
+                    // Get the current items in the right list into a List.
                     List<String> existingItems = new ArrayList<>();
                     for (int i = 0; i < rightListTypeModel.getSize(); i++) {
                         existingItems.add(rightListTypeModel.getElementAt(i));
                     }
 
-                    // Sol listedeki tüm öğeleri sağ listeye ekle (ancak sağ listede olmayanları)
+                    // Add all items in the left list to the right list.
                     for (String item : allItems) {
                         if (!existingItems.contains(item)) {
                             rightListTypeModel.addElement(item);

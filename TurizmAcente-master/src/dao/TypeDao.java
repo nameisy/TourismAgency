@@ -57,7 +57,7 @@ public class TypeDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Hata durumunda typeName zaten null olarak kalacak
+            // In case of error, typeName will be null anyway.
         }
 
         return typeName;
@@ -95,9 +95,9 @@ public class TypeDao {
     }
     public boolean save(int hotelId, List<String> rightList) {
         try {
-            // Sağ listedeki özellikleri kontrol et ve ekle
+            // Check and add properties in the right list.
             for (String feature : rightList) {
-                // Özellik veritabanında bulunmuyorsa, ekle
+                // If the property is not in the database, add it.
                 String insertQuery = "INSERT INTO type_hotel (hotel_id, type_name) VALUES (?, ?)";
                 PreparedStatement insertStatement = con.prepareStatement(insertQuery);
                 insertStatement.setInt(1, hotelId);
@@ -107,14 +107,14 @@ public class TypeDao {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("An error occurred while inserting new features: " + e.getMessage());
-            return false; // Ekleme işlemi başarısız olduğunda false döndür
+            return false; // Return false when the insertion fails.
         }
-        return true; // Ekleme işlemi başarılıysa true döndür
+        return true; // Return true if the insertion was successful.
     }
 
     public boolean update(int hotelId, List<String> rightList) {
         try {
-            // Var olan tüm özellikleri veritabanından al
+            // Get all existing properties from the database.
             String selectQuery = "SELECT type_name FROM type_hotel WHERE hotel_id = ?";
             PreparedStatement selectStatement = con.prepareStatement(selectQuery);
             selectStatement.setInt(1, hotelId);
@@ -125,10 +125,10 @@ public class TypeDao {
                 existingFeatures.add(resultSet.getString("type_name"));
             }
 
-            // Sağ listedeki özellikleri kontrol et ve ekle
+            // Check and add properties in the right list.
             for (String feature : rightList) {
                 if (!existingFeatures.contains(feature)) {
-                    // Özellik veritabanında bulunmuyorsa, ekle
+                    // If the property is not in the database, add it.
                     String insertQuery = "INSERT INTO type_hotel (hotel_id, type_name) VALUES (?, ?)";
                     PreparedStatement insertStatement = con.prepareStatement(insertQuery);
                     insertStatement.setInt(1, hotelId);
@@ -145,7 +145,7 @@ public class TypeDao {
 
     public boolean deleteType(int hotelId, List<String> rightList) {
         try {
-            // Var olan tüm özellikleri veritabanından al
+            // Get all existing properties from the database
             String selectQuery = "SELECT type_name FROM type_hotel WHERE hotel_id = ?";
             PreparedStatement selectStatement = con.prepareStatement(selectQuery);
             selectStatement.setInt(1, hotelId);
@@ -156,10 +156,10 @@ public class TypeDao {
                 existingFeatures.add(resultSet.getString("type_name"));
             }
 
-            // Sağ listedeki özellikleri kontrol et ve sil
+            // Check and delete properties in the right list
             for (String feature : rightList) {
                 if (existingFeatures.contains(feature)) {
-                    // Özellik veritabanında bulunmuyorsa, sil
+                    // If the property does not exist in the database, delete it
                     String deleteQuery = "DELETE FROM type_hotel WHERE hotel_id = ? AND type_name = ?";
                     PreparedStatement insertStatement = con.prepareStatement(deleteQuery);
                     insertStatement.setInt(1, hotelId);
